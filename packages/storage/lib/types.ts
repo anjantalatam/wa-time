@@ -15,6 +15,19 @@ export type ThemeStorage = BaseStorage<Theme> & {
   toggle: () => Promise<void>;
 };
 
+export type User = {
+  name: string;
+  phone: string;
+};
+
+export type Users = Record<string, User>;
+
+export type UserStorage = BaseStorage<Users> & {
+  findUser: () => Promise<void>;
+  addUser: (user: User) => Promise<void>;
+  deleteUser: (phone: string) => Promise<void>;
+};
+
 export type StorageConfig<D = string> = {
   /**
    * Assign the {@link StorageEnum} to use.

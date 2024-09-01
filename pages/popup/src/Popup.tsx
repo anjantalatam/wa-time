@@ -1,7 +1,13 @@
 import '@src/Popup.css';
 import { useStorageSuspense, withErrorBoundary, withSuspense } from '@extension/shared';
-import { exampleThemeStorage } from '@extension/storage';
+import { exampleThemeStorage, userStorage } from '@extension/storage';
 import type { ComponentPropsWithoutRef } from 'react';
+
+// export async function deleteUserByPhone(phone: string) {
+//   console.log('initial users:>>>', await userStorage.get());
+//   await userStorage.deleteUser(phone);
+//   console.log('after users:>>>', await userStorage.get());
+// }
 
 const Popup = () => {
   const theme = useStorageSuspense(exampleThemeStorage);
@@ -39,6 +45,15 @@ const Popup = () => {
           Click to inject Content Script
         </button>
         <ToggleButton>Toggle theme</ToggleButton>
+        {/* <button
+          className="mt-2 p-2 bg-slate-500 color-white"
+          onClick={async () => {
+            await deleteUserByPhone(
+              'Topmate lets you open-up ways so that others can reach out to you for your knowledge or guidance in a more personalised manner!',
+            );
+          }}>
+          delete user
+        </button> */}
       </header>
     </div>
   );
