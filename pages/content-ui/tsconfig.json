@@ -8,5 +8,5 @@
     "jsx": "react-jsx",
     "types": ["chrome", "../../vite-env.d.ts"]
   },
-  "include": ["src"]
+  "include": ["src", "../../packages/shared/lib/actions/userActions.ts"]
 }

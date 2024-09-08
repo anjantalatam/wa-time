@@ -6,7 +6,7 @@ export async function addUser(user: User) {
   return user;
 }
 
-export async function findUserByName(name: string) {
+export async function findUserByName(name: string): Promise<User | null> {
   const users = await userStorage.get();
   const usersList = Object.values(users);
 
@@ -15,4 +15,14 @@ export async function findUserByName(name: string) {
 
 export async function deleteUserByPhone(phone: string) {
   await userStorage.deleteUser(phone);
+}
+
+export async function getAllUsers() {
+  const users = await userStorage.get();
+  const usersList = Object.values(users);
+  return usersList;
+}
+
+export async function deleteAllUsers() {
+  await userStorage.deleteStore();
 }

@@ -1,11 +1,10 @@
-import { useStorageSuspense } from '@extension/shared';
+import { addUser, findUserByName, useStorageSuspense } from '@extension/shared';
 
-import { addUser, findUserByName } from './userActions';
 import { useEffect, useRef, useState } from 'react';
-import { CONTACT_INFO_TAB, NAME_FROM_CONTACT_INFO, PHONE_FROM_CONTACT_INFO, USER_NAME } from './utils';
-import { User } from '@extension/storage/lib/types';
+import { CONTACT_INFO_TAB, NAME_FROM_CONTACT_INFO, PHONE_FROM_CONTACT_INFO, prepareNewUser, USER_NAME } from './utils';
+import Time from './Time';
 
-function getUserTime() {}
+import { User } from '@extension/storage/lib/types';
 
 export default function LocalTime() {
   const [userData, setUserData] = useState<User | null>(null);
@@ -18,9 +17,7 @@ export default function LocalTime() {
         const user = await findUserByName(currentUserName);
 
         setUserData(user);
-        return user;
       }
-      return null;
     }
 
     init();
@@ -39,10 +36,10 @@ export default function LocalTime() {
           setUserData(currentUserData => {
             if (!currentUserData) {
               const name = document.querySelector(NAME_FROM_CONTACT_INFO)?.textContent ?? '';
-              const newUser = {
+              const newUser = prepareNewUser({
                 name,
                 phone: phoneFromContactInfo,
-              };
+              });
               addUser(newUser);
               return newUser;
             }
@@ -64,10 +61,14 @@ export default function LocalTime() {
     };
   }, [userData]);
 
+  console.log(userData, '<<<');
+
   return (
     <div>
-      {/* <span className="text-pink-400">{userData?.phone}</span> */}
-      <span className="text-white ml-2 text-xs">(Click here to fetch local time)</span>
+      {/* {userData && <span className="text-white ml-2 text-xs">{getUserTime(userData)}</span>} */}
+      {userData && <Time user={userData} />}
+      {/* {userData && <span className="text-pink-400">{userData.phone}</span>} */}
+      {!userData && <span className="ml-2 text-xs">(Click here to fetch local time)</span>}{' '}
     </div>
   );
 }

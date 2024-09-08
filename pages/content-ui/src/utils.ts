@@ -1,4 +1,13 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+// @ts-ignore
+import { getLocalInfo } from 'phone-number-to-timezone';
+import { User } from '@extension/storage/lib/types';
+
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export const CHAT_HEADER = '#main > header';
 export const HEADER_NAME_CONTAINER = '#main > header > div._amie > div > div > div';
@@ -16,3 +25,20 @@ export const UserContext = createContext<{
   currentUser: string | null;
   setCurrentUser: Dispatch<SetStateAction<string | null>> | null;
 }>({ currentUser: null, setCurrentUser: null });
+
+export const getUserTime = (user: User) => {
+  const utcTime = dayjs().utc();
+  const gmtOffset = user.offset * 60;
+  const localTime = utcTime.utcOffset(gmtOffset);
+  return localTime.format('hh:mm A');
+};
+
+export const prepareNewUser = (partialUser: Pick<User, 'name' | 'phone'>): User => {
+  const details = getLocalInfo(partialUser.phone);
+
+  return {
+    name: partialUser.name,
+    phone: partialUser.phone,
+    offset: details.offset,
+  };
+};

@@ -26,4 +26,7 @@ export const userStorage: UserStorage = {
       return currentUsers;
     });
   },
+  deleteStore: async () => {
+    await storage.set({});
+  },
 };

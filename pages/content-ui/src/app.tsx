@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { CHAT_HEADER, USER_NAME } from './utils';
 import { injectTime } from './injectTime';
+import { deleteActiveIntervals, windowWithTimers } from './store';
 
 let currentUser: string | null = null;
 
@@ -16,6 +17,9 @@ export default function App() {
           currentUser = currentUserElm?.textContent ?? null;
           injectTime();
         }
+      } else if (windowWithTimers.getActiveIntervals().length > 0) {
+        // this deletes any intervals that are left when user clicks esc
+        deleteActiveIntervals();
       }
     });
 

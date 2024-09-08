@@ -1,18 +1,23 @@
 import '@src/Popup.css';
-import { useStorageSuspense, withErrorBoundary, withSuspense } from '@extension/shared';
-import { exampleThemeStorage, userStorage } from '@extension/storage';
-import type { ComponentPropsWithoutRef } from 'react';
-
-// export async function deleteUserByPhone(phone: string) {
-//   console.log('initial users:>>>', await userStorage.get());
-//   await userStorage.deleteUser(phone);
-//   console.log('after users:>>>', await userStorage.get());
-// }
+import { deleteAllUsers, getAllUsers, useStorageSuspense, withErrorBoundary, withSuspense } from '@extension/shared';
+import { exampleThemeStorage } from '@extension/storage';
+import { useEffect, useState, type ComponentPropsWithoutRef } from 'react';
+import { User } from '@extension/storage/lib/types';
 
 const Popup = () => {
+  const [users, setUsers] = useState<User[] | null>(null);
   const theme = useStorageSuspense(exampleThemeStorage);
   const isLight = theme === 'light';
   const logo = isLight ? 'popup/logo_vertical.svg' : 'popup/logo_vertical_dark.svg';
+
+  useEffect(() => {
+    async function init() {
+      const users = await getAllUsers();
+      setUsers(users);
+    }
+
+    init();
+  }, []);
 
   const injectContentScript = async () => {
     const [tab] = await chrome.tabs.query({ currentWindow: true, active: true });
@@ -36,6 +41,7 @@ const Popup = () => {
         <p>
           Edit <code>pages/popup/src/Popup.tsx</code>
         </p>
+
         <button
           className={
             'font-bold mt-4 py-1 px-4 rounded shadow hover:scale-105 ' +
@@ -44,16 +50,20 @@ const Popup = () => {
           onClick={injectContentScript}>
           Click to inject Content Script
         </button>
-        <ToggleButton>Toggle theme</ToggleButton>
-        {/* <button
+        <ToggleButton>Toggle themeee</ToggleButton>
+        <button
           className="mt-2 p-2 bg-slate-500 color-white"
           onClick={async () => {
-            await deleteUserByPhone(
-              'Topmate lets you open-up ways so that others can reach out to you for your knowledge or guidance in a more personalised manner!',
-            );
+            await deleteAllUsers();
           }}>
           delete user
-        </button> */}
+        </button>
+
+        {users?.map(user => (
+          <div>
+            {user.name}-{user.phone}-{user.offset}
+          </div>
+        ))}
       </header>
     </div>
   );

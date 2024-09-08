@@ -18,6 +18,7 @@ export type ThemeStorage = BaseStorage<Theme> & {
 export type User = {
   name: string;
   phone: string;
+  offset: number;
 };
 
 export type Users = Record<string, User>;
@@ -26,6 +27,7 @@ export type UserStorage = BaseStorage<Users> & {
   findUser: () => Promise<void>;
   addUser: (user: User) => Promise<void>;
   deleteUser: (phone: string) => Promise<void>;
+  deleteStore: () => Promise<void>;
 };
 
 export type StorageConfig<D = string> = {

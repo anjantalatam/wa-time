@@ -25,10 +25,12 @@
     "@extension/ui": "workspace:*"
   },
   "devDependencies": {
+    "@extension/hmr": "workspace:*",
     "@extension/tailwindcss-config": "workspace:*",
     "@extension/tsconfig": "workspace:*",
-    "@extension/hmr": "workspace:*",
     "@extension/vite-config": "workspace:*",
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "dayjs": "^1.11.13",
+    "phone-number-to-timezone": "^1.0.8"
   }
 }
