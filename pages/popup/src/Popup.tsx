@@ -1,5 +1,12 @@
 import '@src/Popup.css';
-import { deleteAllUsers, getAllUsers, useStorageSuspense, withErrorBoundary, withSuspense } from '@extension/shared';
+import {
+  deleteAllUsers,
+  deleteUserByPhone,
+  getAllUsers,
+  useStorageSuspense,
+  withErrorBoundary,
+  withSuspense,
+} from '@extension/shared';
 import { exampleThemeStorage } from '@extension/storage';
 import { useEffect, useState, type ComponentPropsWithoutRef } from 'react';
 import { User } from '@extension/storage/lib/types';
@@ -60,7 +67,7 @@ const Popup = () => {
         </button>
 
         {users?.map(user => (
-          <div>
+          <div onClick={() => deleteUserByPhone(user.phone)}>
             {user.name}-{user.phone}-{user.offset}
           </div>
         ))}

@@ -27,7 +27,6 @@ export default function LocalTime() {
     const contactInfoObserver = new MutationObserver(() => {
       const contactInfoElm = document.querySelector(CONTACT_INFO_TAB);
 
-      console.log('>>>here');
       if (contactInfoElm && !contInfoPhoneRef.current) {
         const phoneFromContactInfo = document.querySelector(PHONE_FROM_CONTACT_INFO)?.textContent ?? null;
         contInfoPhoneRef.current = phoneFromContactInfo;

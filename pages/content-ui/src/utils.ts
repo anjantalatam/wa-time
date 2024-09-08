@@ -10,8 +10,10 @@ dayjs.extend(utc);
 dayjs.extend(timezone);
 
 export const CHAT_HEADER = '#main > header';
-export const HEADER_NAME_CONTAINER = '#main > header > div._amie > div > div > div';
+export const HEADER_NAME_CONTAINER = '#main > header > div._amie > div._amif > div._amig > div';
 export const USER_NAME = `${HEADER_NAME_CONTAINER} > span`;
+
+export const HEADER_SUBTEXT = '#main > header > div._amie > div:nth-of-type(2) > span';
 
 export const PHONE_FROM_CONTACT_INFO =
   '#app > div > div.three._aigs > div._aigv._aig-._aohg > span > div > span > div > div > section > div > div> div > span > span';
@@ -20,6 +22,8 @@ export const NAME_FROM_CONTACT_INFO =
   '#app > div > div.three._aigs > div._aigv._aig-._aohg > span > div > span > div > div > section > div> div > h2 > div > span';
 
 export const CONTACT_INFO_TAB = 'div[title="Contact info"]';
+
+export const TXT_BUSINESS_ACCOUNT = 'Business Account';
 
 export const UserContext = createContext<{
   currentUser: string | null;
@@ -35,10 +39,11 @@ export const getUserTime = (user: User) => {
 
 export const prepareNewUser = (partialUser: Pick<User, 'name' | 'phone'>): User => {
   const details = getLocalInfo(partialUser.phone);
+  const offset = details?.country_info?.offset;
 
   return {
     name: partialUser.name,
     phone: partialUser.phone,
-    offset: details.offset,
+    offset,
   };
 };
