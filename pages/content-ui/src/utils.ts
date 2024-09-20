@@ -42,6 +42,7 @@ export const prepareNewUser = (partialUser: Pick<User, 'name' | 'phone'>): User 
   const offset = details?.country_info?.offset;
 
   return {
+    id: crypto.randomUUID(),
     name: partialUser.name,
     phone: partialUser.phone,
     offset,

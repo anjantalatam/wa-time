@@ -2,9 +2,10 @@
   "extends": "@extension/tsconfig/utils",
   "compilerOptions": {
     "outDir": "dist",
+    "module": "es2020",
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "types": ["chrome"]
+    "types": ["chrome","../../vite-env.d.ts"]
   },
-  "include": ["index.ts", "lib", "../shared/lib/actions/userActions.ts"]
+  "include": ["index.ts", "lib", "../shared/lib/actions/userActions.ts", "../shared/lib/utils"]
 }

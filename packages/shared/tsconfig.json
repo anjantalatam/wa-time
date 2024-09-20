@@ -1,10 +1,11 @@
 {
-  "extends": "@extension/tsconfig/utils",
+  "extends": "@extension/tsconfig/base",
   "compilerOptions": {
+    "module": "ES6",
     "outDir": "dist",
     "jsx": "react-jsx",
     "baseUrl": ".",
-    "types": ["chrome"]
+    "types": ["chrome","../../vite-env.d.ts"]
   },
   "include": ["index.ts", "lib"]
 }

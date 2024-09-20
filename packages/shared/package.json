@@ -17,9 +17,12 @@
     "prettier": "prettier . --write --ignore-path ../../.prettierignore",
     "type-check": "tsc --noEmit"
   },
-  "dependencies": {},
   "devDependencies": {
     "@extension/storage": "workspace:*",
-    "@extension/tsconfig": "workspace:*"
+    "@extension/tsconfig": "workspace:*",
+    "bcryptjs": "^2.4.3"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.6"
   }
 }

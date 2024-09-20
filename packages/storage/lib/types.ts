@@ -16,6 +16,7 @@ export type ThemeStorage = BaseStorage<Theme> & {
 };
 
 export type User = {
+  id: string;
   name: string;
   phone: string;
   offset: number;

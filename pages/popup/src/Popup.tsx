@@ -61,16 +61,17 @@ const Popup = () => {
         <button
           className="mt-2 p-2 bg-slate-500 color-white"
           onClick={async () => {
-            await deleteAllUsers();
+            // await deleteAllUsers();
+            // await createHash('something');
           }}>
           delete user
         </button>
 
-        {users?.map(user => (
+        {/* {users?.map(user => (
           <div onClick={() => deleteUserByPhone(user.phone)}>
-            {user.name}-{user.phone}-{user.offset}
+            {user.name}-{user.offset}
           </div>
-        ))}
+        ))} */}
       </header>
     </div>
   );
