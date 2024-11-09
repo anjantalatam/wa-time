@@ -1,10 +1,10 @@
-import { addUser, findUserByName, useStorageSuspense } from '@extension/shared';
+import { addUser, findUserByName } from '@extension/shared';
 
 import { useEffect, useRef, useState } from 'react';
 import { CONTACT_INFO_TAB, NAME_FROM_CONTACT_INFO, PHONE_FROM_CONTACT_INFO, prepareNewUser, USER_NAME } from './utils';
 import Time from './Time';
 
-import { User } from '@extension/storage/lib/types';
+import type { User } from '@extension/storage/lib/types';
 
 export default function LocalTime() {
   const [userData, setUserData] = useState<User | null>(null);

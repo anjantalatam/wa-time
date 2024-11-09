@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import { HEADER_NAME_CONTAINER, USER_NAME } from './utils';
+import { HEADER_NAME_CONTAINER } from './utils';
 import LocalTime from './LocalTime';
 import tailwindcssOutput from '../dist/tailwind-output.css?inline';
 

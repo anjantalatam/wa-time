@@ -14,13 +14,12 @@ export default function App() {
       const currentUserElm = document.querySelector(USER_NAME);
 
       if (chatHeaderElement && currentUserElm) {
-        console.log(windowWithTimers.getActiveIntervals(), 'intervals');
-
         if (currentUserElm?.textContent !== currentUser) {
           currentUser = currentUserElm?.textContent ?? null;
 
-          let isBusiness = chatHeaderSubtextElm && chatHeaderSubtextElm?.textContent === TXT_BUSINESS_ACCOUNT;
+          const isBusiness = chatHeaderSubtextElm && chatHeaderSubtextElm?.textContent === TXT_BUSINESS_ACCOUNT;
           if (!isBusiness) {
+            console.log('injectTime');
             // do not TimeElement for business accounts
             injectTime();
           } else {

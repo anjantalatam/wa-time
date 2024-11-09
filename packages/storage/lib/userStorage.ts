@@ -1,6 +1,6 @@
 import { createStorage } from './base';
 import { StorageEnum } from './enums';
-import { User, Users, UserStorage } from './types';
+import type { User, Users, UserStorage } from './types';
 
 const storage = createStorage<Users>(
   'user-storage-key',

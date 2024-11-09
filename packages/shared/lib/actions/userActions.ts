@@ -1,5 +1,5 @@
 import { userStorage } from '@extension/storage';
-import { User } from '@extension/storage/lib/types';
+import type { User } from '@extension/storage/lib/types';
 
 export async function addUser(user: User) {
   await userStorage.addUser(user);
