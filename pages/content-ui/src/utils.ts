@@ -16,11 +16,11 @@ export const USER_NAME = `${HEADER_NAME_CONTAINER} > span`;
 
 export const HEADER_SUBTEXT = '#main > header > div._amie > div:nth-of-type(2) > span';
 
-export const PHONE_FROM_CONTACT_INFO =
-  '#app > div > div.three._aigs > div._aig- > span > div > span > div > div > section > div > div > div > span > span';
+const CONTACT_INFO_DIV = '#app > div > div.three._aigs > div._aig-';
 
-export const NAME_FROM_CONTACT_INFO =
-  '#app > div > div.three._aigs > div._aig- > span > div > span > div > div > section > div> div > h2 > div > span';
+export const PHONE_FROM_CONTACT_INFO = `${CONTACT_INFO_DIV} > span > div > span > div > div > section > div > div > div > span > span`;
+
+export const NAME_FROM_CONTACT_INFO = `${CONTACT_INFO_DIV} > span > div > span > div > div > section > div> div > h2 > div > span`;
 
 export const CONTACT_INFO_TAB = 'div[title="Contact info"]';
 

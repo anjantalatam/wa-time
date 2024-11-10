@@ -60,8 +60,6 @@ export default function LocalTime() {
     };
   }, [userData]);
 
-  console.log(userData, '<<<');
-
   return (
     <div>
       {/* {userData && <span className="text-white ml-2 text-xs">{getUserTime(userData)}</span>} */}

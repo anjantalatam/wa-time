@@ -7,7 +7,6 @@ let currentUser: string | null = null;
 
 export default function App() {
   useEffect(() => {
-    console.log('content ui loaded');
     const bodyObserver = new MutationObserver(() => {
       const chatHeaderElement = document.querySelector(CHAT_HEADER);
       const chatHeaderSubtextElm = document.querySelector(HEADER_SUBTEXT);
@@ -19,7 +18,6 @@ export default function App() {
 
           const isBusiness = chatHeaderSubtextElm && chatHeaderSubtextElm?.textContent === TXT_BUSINESS_ACCOUNT;
           if (!isBusiness) {
-            console.log('injectTime');
             // do not TimeElement for business accounts
             injectTime();
           } else {
