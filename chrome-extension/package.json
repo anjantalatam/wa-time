@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension",
+  "name": "Watime",
   "version": "0.3.1",
-  "description": "chrome extension",
+  "description": "Know your receipient local time on WhatsApp Web",
   "scripts": {
     "clean": "rimraf ../../dist",
     "build": "tsc --noEmit && vite build",
